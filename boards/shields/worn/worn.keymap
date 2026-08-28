@@ -19,7 +19,7 @@
    &kp ESC   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RET
-                  &kp LGUI &kp SPACE &mo 1   &mo 2 &key_repeat &kp RALT
+                  &kp LGUI &kp SPACE &mo 1   &mo 2 &kp LCTRL &kp RALT
                         >;
                 };
                 
@@ -29,7 +29,7 @@
    &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
    &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
    &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                                    &kp LGUI     &trans       &mo 1      &mo 2  &key_repeat   &kp RALT
+                                    &kp LGUI     &trans       &mo 1      &mo 2  &kp LCTRL   &kp RALT
                         >;
                 };
 
@@ -38,7 +38,7 @@
    &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp DEL
    &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp GRAVE
    &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LGUI &trans   &mo 1   &mo 2   &key_repeat    &kp RALT
+                             &kp LGUI &trans   &mo 1   &mo 2   &kp LCTRL    &kp RALT
                         >;
                 };
 
@@ -47,7 +47,7 @@
    &trans &trans &trans &trans &trans &trans      &kp CARET &kp N7 &kp N8 &kp N9 &trans &trans
    &trans &trans &trans &trans &trans &trans      &kp MINUS &kp N4 &kp N5 &kp N6 &trans &trans
    &trans &trans &trans &trans &trans &trans      &kp PLUS  &kp N1 &kp N2 &kp N3 &trans &trans
-                     &kp LGUI &trans   &mo 1      &mo 2  &key_repeat &kp RALT
+                     &kp LGUI &trans   &mo 1      &mo 2  &kp LCTRL &kp RALT
                         >;
                 };
 
