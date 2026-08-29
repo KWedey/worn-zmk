@@ -31,6 +31,11 @@ SPECIAL = {
     "LBRC": ("{", "s"), "RBRC": ("}", "s"), "PIPE": ("|", "s"),
     "TILDE": ("~", "s"),
 }
+MEDIA = {
+    "C_PREV": ("PREV", "v"), "C_NEXT": ("NEXT", "v"),
+    "C_PLAY_PAUSE": ("PLAY", "v"), "C_MUTE": ("MUTE", "v"),
+    "C_VOL_UP": ("VOL+", "v"), "C_VOL_DN": ("VOL-", "v"),
+}
 LAYER_NAMES = {"1": "LOWER", "2": "RAISE", "3": "TRI"}
 
 
@@ -38,10 +43,14 @@ def describe(binding):
     """Map a ZMK binding to the page's (label, kind) pair."""
     if binding == "&trans":
         return None
+    if binding == "&none":
+        return "—", "x"
     if binding.startswith("&kp "):
         code = binding[4:]
         if code in SPECIAL:
             return SPECIAL[code]
+        if code in MEDIA:
+            return MEDIA[code]
         if re.fullmatch(r"[A-Z]", code):
             return code, "a"
         if re.fullmatch(r"N\d", code):

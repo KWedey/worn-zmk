@@ -120,6 +120,9 @@ h1{
   color:var(--accent-ink); border-color:var(--accent);
 }
 .key[data-k="r"]{color:var(--ink-2)}
+.key[data-k="x"]{color:var(--ghost); background:linear-gradient(178deg,var(--panel),var(--panel))}
+.key[data-k="v"]{color:var(--ink-2)}
+.key[data-k="v"] .lbl{font-size:9.5px; letter-spacing:.03em; text-transform:uppercase; font-weight:700}
 .key[data-k="t"]{
   background:var(--panel); box-shadow:none; border-style:dashed; border-color:var(--line);
   color:var(--ghost);
@@ -169,6 +172,7 @@ h1{
 .sw.b{background:var(--bt-soft); border-color:var(--bt)}
 .sw.l{background:var(--accent-soft); border-color:var(--accent)}
 .sw.t{background:var(--panel); border-style:dashed; border-color:var(--line)}
+.sw.x{background:var(--panel); border-color:var(--cap-edge)}
 .legend b{color:var(--ink); font-weight:600}
 .flow{display:flex; align-items:center; gap:9px; flex-wrap:wrap; font-family:"JetBrains Mono",monospace; font-size:12px}
 .chip{
@@ -250,6 +254,7 @@ code{font-family:"JetBrains Mono",monospace; font-size:12px; background:var(--de
       <ul class="legend">
         <li><span class="sw"></span><b>Solid</b> — this layer sets the key</li>
         <li><span class="sw t"></span><b>Dashed</b> — falls through; the faint legend is what you actually get</li>
+        <li><span class="sw x"></span><b>Blank</b> — set to do nothing on purpose</li>
         <li><span class="sw l"></span><b>Copper</b> — layer key, held not tapped</li>
         <li><span class="sw n"></span><b>Blue</b> — arrows</li>
         <li><span class="sw b"></span><b>Violet</b> — Bluetooth profile</li>
@@ -268,12 +273,12 @@ const L0=[
 const L1=[
  ["TAB","&kp TAB","f"],["1","&kp N1","d"],["2","&kp N2","d"],["3","&kp N3","d"],["4","&kp N4","d"],["5","&kp N5","d"],["6","&kp N6","d"],["7","&kp N7","d"],["8","&kp N8","d"],["9","&kp N9","d"],["0","&kp N0","d"],["BSPC","&kp BSPC","f"],
  ["BT CLR","&bt BT_CLR","b"],["BT 0","&bt BT_SEL 0","b"],["BT 1","&bt BT_SEL 1","b"],["BT 2","&bt BT_SEL 2","b"],["BT 3","&bt BT_SEL 3","b"],["BT 4","&bt BT_SEL 4","b"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2191","&kp UP","n"],["\u2192","&kp RIGHT","n"],T,T,
- ["SHIFT","&kp LSHFT","m"],T,T,T,T,T,T,T,T,T,T,T,
+ ["SHIFT","&kp LSHFT","m"],["PREV","&kp C_PREV","v"],["PLAY","&kp C_PLAY_PAUSE","v"],["NEXT","&kp C_NEXT","v"],["VOL-","&kp C_VOL_DN","v"],["VOL+","&kp C_VOL_UP","v"],T,T,T,T,T,T,
  ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CMD","&kp LGUI","m"],["ALT","&kp RALT","m"]];
 const L2=[
- ["TAB","&kp TAB","f"],["!","&kp EXCL","s"],["@","&kp AT","s"],["#","&kp HASH","s"],["$","&kp DLLR","s"],["%","&kp PRCNT","s"],T,["(","&kp LPAR","s"],[")","&kp RPAR","s"],T,T,["DEL","&kp DEL","f"],
- ["CTRL","&kp LCTRL","m"],["^","&kp CARET","s"],["&","&kp AMPS","s"],["*","&kp ASTRK","s"],["+","&kp PLUS","s"],["=","&kp EQUAL","s"],T,["[","&kp LBKT","s"],["]","&kp RBKT","s"],T,["\\","&kp BSLH","s"],["`","&kp GRAVE","s"],
- ["SHIFT","&kp LSHFT","m"],T,T,T,["-","&kp MINUS","s"],["_","&kp UNDER","s"],T,["{","&kp LBRC","s"],["}","&kp RBRC","s"],T,["|","&kp PIPE","s"],["~","&kp TILDE","s"],
+ ["TAB","&kp TAB","f"],["!","&kp EXCL","s"],["@","&kp AT","s"],["#","&kp HASH","s"],["$","&kp DLLR","s"],["%","&kp PRCNT","s"],["\u2014","&none","x"],["(","&kp LPAR","s"],[")","&kp RPAR","s"],["\u2014","&none","x"],["\u2014","&none","x"],["DEL","&kp DEL","f"],
+ ["CTRL","&kp LCTRL","m"],["^","&kp CARET","s"],["&","&kp AMPS","s"],["*","&kp ASTRK","s"],["+","&kp PLUS","s"],["=","&kp EQUAL","s"],["\u2014","&none","x"],["[","&kp LBKT","s"],["]","&kp RBKT","s"],["\u2014","&none","x"],["\\","&kp BSLH","s"],["`","&kp GRAVE","s"],
+ ["SHIFT","&kp LSHFT","m"],T,T,T,["-","&kp MINUS","s"],["_","&kp UNDER","s"],["\u2014","&none","x"],["{","&kp LBRC","s"],["}","&kp RBRC","s"],["\u2014","&none","x"],["|","&kp PIPE","s"],["~","&kp TILDE","s"],
  ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
 const L3=[
  ["F1","&kp F1","f"],["F2","&kp F2","f"],["F3","&kp F3","f"],["F4","&kp F4","f"],["F5","&kp F5","f"],["F6","&kp F6","f"],["^","&kp CARET","s"],["7","&kp N7","d"],["8","&kp N8","d"],["9","&kp N9","d"],T,T,
