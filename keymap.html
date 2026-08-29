@@ -104,7 +104,7 @@ h1{
   display:flex; align-items:center; justify-content:center; padding:3px;
   font-family:"JetBrains Mono",ui-monospace,monospace;
   font-size:13px; font-weight:500; color:var(--ink);
-  cursor:default; transition:transform .08s,box-shadow .08s;
+  cursor:pointer; transition:transform .08s,box-shadow .08s;
   overflow:hidden;
 }
 .key .lbl{text-align:center; line-height:1.15; word-break:break-word}
@@ -127,6 +127,30 @@ h1{
 .key[data-k="t"] .lbl{font-size:11px; font-weight:400; opacity:.85}
 .key[data-k="t"] .lbl.small{font-size:9px; text-transform:uppercase; letter-spacing:.03em}
 .key.hit{transform:translateY(2px); box-shadow:0 0 0 2px var(--accent),0 1px 3px var(--cap-shadow)}
+.key:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.key.sel{box-shadow:0 0 0 3px var(--accent),0 2px 5px var(--cap-shadow); border-color:var(--accent)}
+.key.sel::after{content:attr(data-pick); position:absolute; top:2px; right:4px;
+ font-size:9px; font-weight:800; color:var(--accent-ink)}
+.picker{background:var(--panel); border:1px solid var(--line); border-radius:11px;
+ padding:15px 18px; margin-bottom:22px}
+.picker h2{font-family:"Bricolage Grotesque",sans-serif; font-size:15px; margin:0 0 9px}
+.pickrow{display:flex; align-items:center; gap:11px; flex-wrap:wrap}
+.slot{flex:1 1 220px; min-width:0; padding:9px 12px; border-radius:8px;
+ border:1px dashed var(--line); background:var(--deck-2); font-size:13px; color:var(--muted)}
+.slot.on{border-style:solid; border-color:var(--accent); background:var(--cap); color:var(--ink)}
+.slot .nm{font-weight:700; display:block}
+.slot .bd{font-family:"JetBrains Mono",monospace; font-size:11.5px; color:var(--ink-2)}
+.pickout{margin-top:12px; display:none}
+.pickout.show{display:block}
+.pickout textarea{width:100%; min-height:54px; resize:vertical; padding:10px 12px; border-radius:8px;
+ border:1px solid var(--line); background:var(--cap); color:var(--ink);
+ font-family:"JetBrains Mono",monospace; font-size:12.5px; line-height:1.5}
+.pbtns{display:flex; gap:8px; margin-top:9px; flex-wrap:wrap; align-items:center}
+.pbtns button{font-family:inherit; font-size:13px; font-weight:600; padding:7px 14px;
+ border-radius:8px; border:1px solid var(--line); background:var(--cap); color:var(--ink); cursor:pointer}
+.pbtns button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.pbtns button.primary{background:var(--accent); border-color:var(--accent); color:#FFF}
+.pbtns .said{font-size:12.5px; color:var(--accent); font-weight:600}
 
 /* ---- legend ---- */
 .grid2{display:grid; grid-template-columns:repeat(auto-fit,minmax(272px,1fr)); gap:16px}
@@ -190,6 +214,22 @@ code{font-family:"JetBrains Mono",monospace; font-size:12px; background:var(--de
 
   <div class="tabs" role="tablist" aria-label="Layers" id="tabs"></div>
   <div class="board"><div class="halves" id="halves"></div></div>
+
+  <div class="picker">
+    <h2>Name a key, or pick two to swap</h2>
+    <div class="pickrow">
+      <div class="slot" id="s1">Click any key above</div>
+      <div class="slot" id="s2">Click a second one to swap</div>
+    </div>
+    <div class="pickout" id="out">
+      <textarea id="txt" readonly></textarea>
+      <div class="pbtns">
+        <button type="button" class="primary" id="copy">Copy</button>
+        <button type="button" id="reset">Clear</button>
+        <span class="said" id="said"></span>
+      </div>
+    </div>
+  </div>
 
   <div class="livebar">
     <button class="toggle" id="live" aria-pressed="false"><span class="dot"></span>Live test</button>
@@ -261,6 +301,16 @@ const LAYERS=[
  {keys:L2,name:"Raise",tag:"layer 2 · hold R-thumb",chain:[0]},
  {keys:L3,name:"Number pad",tag:"layer 3 · hold both",chain:[2,1,0]}];
 
+// ---- naming ----
+const FING_L=["outer","pinky","ring","middle","index","inner"];
+const FING_R=["inner","index","middle","ring","pinky","outer"];
+const ROWS=["top","home","bottom"];
+const THUMB_L=["outer","middle","inner"], THUMB_R=["inner","middle","outer"];
+function keyName(ki){
+  if(ki>=36){ const n=ki-36; return n<3 ? "left "+THUMB_L[n]+" thumb" : "right "+THUMB_R[n-3]+" thumb"; }
+  const r=Math.floor(ki/12), c=ki%12;
+  return c<6 ? "left "+ROWS[r]+" "+FING_L[c] : "right "+ROWS[r]+" "+FING_R[c-6];
+}
 const CODE={0:"Escape",12:"ControlLeft",24:"ShiftLeft",11:"Backspace",35:"Enter",36:"MetaLeft",37:"Space",41:"AltRight"};
 "QWERTYUIOP".split("").forEach((c,i)=>CODE[i+1]="Key"+c);
 "ASDFGHJKL".split("").forEach((c,i)=>CODE[i+13]="Key"+c);
@@ -279,6 +329,7 @@ function makeKey(li,ki){
   const [lbl,raw,kind]=LAYERS[li].keys[ki];
   const el=document.createElement("div");
   el.className="key"; el.dataset.k=kind; el.dataset.i=ki;
+  el.tabIndex=0; el.setAttribute("role","button"); el.dataset.name=keyName(ki);
   const span=document.createElement("span"); span.className="lbl";
   if(kind==="t"){
     const f=resolve(li,ki);
@@ -287,6 +338,10 @@ function makeKey(li,ki){
     else { span.textContent="—"; el.title="&trans"; }
   } else { span.textContent=lbl; el.title=raw; }
   el.appendChild(span);
+  el.addEventListener("click",()=>pick(ki));
+  el.addEventListener("keydown",ev=>{
+    if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();pick(ki);}
+  });
   return el;
 }
 function render(li){
@@ -319,10 +374,66 @@ LAYERS.forEach((L,i)=>{
   b.innerHTML='<span class="tn"></span><span class="tk"></span>';
   b.querySelector(".tn").textContent=L.name;
   b.querySelector(".tk").textContent=L.tag;
-  b.onclick=()=>{cur=i; [...tabs.children].forEach((t,j)=>t.setAttribute("aria-selected",j===i)); render(i);};
+  b.onclick=()=>{cur=i; [...tabs.children].forEach((t,j)=>t.setAttribute("aria-selected",j===i)); sel.length=0; render(i); drawPicker();};
   tabs.appendChild(b);
 });
 render(0);
+
+// ---- picker ----
+const sel=[], SLOT=[document.getElementById("s1"),document.getElementById("s2")],
+      out=document.getElementById("out"), txt=document.getElementById("txt"),
+      said=document.getElementById("said");
+function bindingOf(ki){
+  const [lbl,raw,kind]=LAYERS[cur].keys[ki];
+  if(kind!=="t") return raw;
+  const f=resolve(cur,ki);
+  return f ? "&trans -> "+f.k[1] : "&trans";
+}
+function drawPicker(){
+  document.querySelectorAll(".key.sel").forEach(e=>{e.classList.remove("sel");e.removeAttribute("data-pick")});
+  sel.forEach((ki,n)=>{
+    const el=document.querySelector('.key[data-i="'+ki+'"]');
+    if(el){el.classList.add("sel"); el.dataset.pick=n+1;}
+  });
+  [0,1].forEach(n=>{
+    const ki=sel[n];
+    if(ki===undefined){
+      SLOT[n].className="slot";
+      SLOT[n].textContent = n?"Click a second one to swap":"Click any key above";
+    }else{
+      SLOT[n].className="slot on";
+      SLOT[n].innerHTML='<span class="nm"></span><span class="bd"></span>';
+      SLOT[n].querySelector(".nm").textContent=keyName(ki);
+      SLOT[n].querySelector(".bd").textContent=bindingOf(ki);
+    }
+  });
+  const layer=LAYERS[cur].name;
+  if(sel.length===1){
+    out.className="pickout show";
+    txt.value=layer+" layer: "+keyName(sel[0])+" is "+bindingOf(sel[0]);
+  }else if(sel.length===2){
+    out.className="pickout show";
+    txt.value="On the "+layer+" layer, swap "+keyName(sel[0])+" ("+bindingOf(sel[0])+")"
+             +" with "+keyName(sel[1])+" ("+bindingOf(sel[1])+")";
+  }else out.className="pickout";
+  said.textContent="";
+}
+function pick(ki){
+  const at=sel.indexOf(ki);
+  if(at>-1) sel.splice(at,1);
+  else if(sel.length<2) sel.push(ki);
+  else { sel.shift(); sel.push(ki); }
+  drawPicker();
+}
+document.getElementById("reset").onclick=()=>{sel.length=0;drawPicker()};
+document.getElementById("copy").onclick=async()=>{
+  txt.select(); txt.setSelectionRange(0,txt.value.length);
+  let ok=false;
+  try{ await navigator.clipboard.writeText(txt.value); ok=true; }
+  catch(e){ try{ ok=document.execCommand("copy"); }catch(e2){ ok=false; } }
+  said.textContent = ok ? "Copied" : "Press Cmd+C — the text is selected";
+};
+drawPicker();
 
 // live test
 let live=false;
