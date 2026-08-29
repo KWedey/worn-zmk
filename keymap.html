@@ -259,37 +259,27 @@ code{font-family:"JetBrains Mono",monospace; font-size:12px; background:var(--de
 </div>
 
 <script>
-const A=(l,r)=>[l,r,"a"], D=(l,r)=>[l,r,"d"], S=(l,r)=>[l,r,"s"];
 const T=["","&trans","t"];
 const L0=[
- ["ESC","&kp ESC","f"],A("Q","&kp Q"),A("W","&kp W"),A("E","&kp E"),A("R","&kp R"),A("T","&kp T"),
- A("Y","&kp Y"),A("U","&kp U"),A("I","&kp I"),A("O","&kp O"),A("P","&kp P"),["BSPC","&kp BSPC","f"],
- ["CTRL","&kp LCTRL","m"],A("A","&kp A"),A("S","&kp S"),A("D","&kp D"),A("F","&kp F"),A("G","&kp G"),
- A("H","&kp H"),A("J","&kp J"),A("K","&kp K"),A("L","&kp L"),A(";","&kp SEMI"),A("'","&kp SQT"),
- ["SHIFT","&kp LSHFT","m"],A("Z","&kp Z"),A("X","&kp X"),A("C","&kp C"),A("V","&kp V"),A("B","&kp B"),
- A("N","&kp N"),A("M","&kp M"),A(",","&kp COMMA"),A(".","&kp DOT"),A("/","&kp FSLH"),["ENTER","&kp RET","f"],
- ["CMD","&kp LGUI","m"],["SPACE","&kp SPACE","f"],["LOWER","&mo 1","l"],
- ["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
+ ["ESC","&kp ESC","f"],["Q","&kp Q","a"],["W","&kp W","a"],["E","&kp E","a"],["R","&kp R","a"],["T","&kp T","a"],["Y","&kp Y","a"],["U","&kp U","a"],["I","&kp I","a"],["O","&kp O","a"],["P","&kp P","a"],["BSPC","&kp BSPC","f"],
+ ["CTRL","&kp LCTRL","m"],["A","&kp A","a"],["S","&kp S","a"],["D","&kp D","a"],["F","&kp F","a"],["G","&kp G","a"],["H","&kp H","a"],["J","&kp J","a"],["K","&kp K","a"],["L","&kp L","a"],[";","&kp SEMI","a"],["'","&kp SQT","a"],
+ ["SHIFT","&kp LSHFT","m"],["Z","&kp Z","a"],["X","&kp X","a"],["C","&kp C","a"],["V","&kp V","a"],["B","&kp B","a"],["N","&kp N","a"],["M","&kp M","a"],[",","&kp COMMA","a"],[".","&kp DOT","a"],["/","&kp FSLH","a"],["ENTER","&kp RET","f"],
+ ["CMD","&kp LGUI","m"],["SPACE","&kp SPACE","f"],["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
 const L1=[
- ["TAB","&kp TAB","f"],D("1","&kp N1"),D("2","&kp N2"),D("3","&kp N3"),D("4","&kp N4"),D("5","&kp N5"),
- D("6","&kp N6"),D("7","&kp N7"),D("8","&kp N8"),D("9","&kp N9"),D("0","&kp N0"),["BSPC","&kp BSPC","f"],
- ["BT CLR","&bt BT_CLR","b"],["BT 0","&bt BT_SEL 0","b"],["BT 1","&bt BT_SEL 1","b"],
- ["BT 2","&bt BT_SEL 2","b"],["BT 3","&bt BT_SEL 3","b"],["BT 4","&bt BT_SEL 4","b"],
- ["←","&kp LEFT","n"],["↓","&kp DOWN","n"],["↑","&kp UP","n"],["→","&kp RIGHT","n"],T,T,
- ["SHIFT","&kp LSHFT","m"],T,T,T,T,T, T,T,T,T,T,T,
- ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],
- ["RAISE","&mo 2","l"],["CMD","&kp LGUI","m"],["ALT","&kp RALT","m"]];
+ ["TAB","&kp TAB","f"],["1","&kp N1","d"],["2","&kp N2","d"],["3","&kp N3","d"],["4","&kp N4","d"],["5","&kp N5","d"],["6","&kp N6","d"],["7","&kp N7","d"],["8","&kp N8","d"],["9","&kp N9","d"],["0","&kp N0","d"],["BSPC","&kp BSPC","f"],
+ ["BT CLR","&bt BT_CLR","b"],["BT 0","&bt BT_SEL 0","b"],["BT 1","&bt BT_SEL 1","b"],["BT 2","&bt BT_SEL 2","b"],["BT 3","&bt BT_SEL 3","b"],["BT 4","&bt BT_SEL 4","b"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2191","&kp UP","n"],["\u2192","&kp RIGHT","n"],T,T,
+ ["SHIFT","&kp LSHFT","m"],T,T,T,T,T,T,T,T,T,T,T,
+ ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CMD","&kp LGUI","m"],["ALT","&kp RALT","m"]];
 const L2=[
  ["TAB","&kp TAB","f"],["!","&kp EXCL","s"],["@","&kp AT","s"],["#","&kp HASH","s"],["$","&kp DLLR","s"],["%","&kp PRCNT","s"],T,["(","&kp LPAR","s"],[")","&kp RPAR","s"],T,T,["DEL","&kp DEL","f"],
  ["CTRL","&kp LCTRL","m"],["^","&kp CARET","s"],["&","&kp AMPS","s"],["*","&kp ASTRK","s"],["+","&kp PLUS","s"],["=","&kp EQUAL","s"],T,["[","&kp LBKT","s"],["]","&kp RBKT","s"],T,["\\","&kp BSLH","s"],["`","&kp GRAVE","s"],
  ["SHIFT","&kp LSHFT","m"],T,T,T,["-","&kp MINUS","s"],["_","&kp UNDER","s"],T,["{","&kp LBRC","s"],["}","&kp RBRC","s"],T,["|","&kp PIPE","s"],["~","&kp TILDE","s"],
  ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
 const L3=[
- T,T,T,T,T,T, S("^","&kp CARET"),D("7","&kp N7"),D("8","&kp N8"),D("9","&kp N9"),T,T,
- T,T,T,T,T,T, S("-","&kp MINUS"),D("4","&kp N4"),D("5","&kp N5"),D("6","&kp N6"),T,T,
- T,T,T,T,T,T, S("+","&kp PLUS"),D("1","&kp N1"),D("2","&kp N2"),D("3","&kp N3"),T,T,
- ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],
- ["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
+ ["F1","&kp F1","f"],["F2","&kp F2","f"],["F3","&kp F3","f"],["F4","&kp F4","f"],["F5","&kp F5","f"],["F6","&kp F6","f"],["^","&kp CARET","s"],["7","&kp N7","d"],["8","&kp N8","d"],["9","&kp N9","d"],T,T,
+ ["F7","&kp F7","f"],["F8","&kp F8","f"],["F9","&kp F9","f"],["F10","&kp F10","f"],["F11","&kp F11","f"],["F12","&kp F12","f"],["-","&kp MINUS","s"],["4","&kp N4","d"],["5","&kp N5","d"],["6","&kp N6","d"],T,T,
+ T,T,T,T,T,T,["+","&kp PLUS","s"],["1","&kp N1","d"],["2","&kp N2","d"],["3","&kp N3","d"],T,T,
+ ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
 
 const LAYERS=[
  {keys:L0,name:"Base",tag:"layer 0 · default",chain:[]},
