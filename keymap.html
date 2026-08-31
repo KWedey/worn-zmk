@@ -91,10 +91,7 @@ h1{
 .half{display:flex; flex-direction:column; gap:7px}
 .krow{display:grid; grid-template-columns:repeat(6,58px); gap:7px}
 .thumbs{display:grid; grid-template-columns:repeat(6,58px); gap:7px; margin-top:9px}
-.half.L .thumbs .key{grid-column:auto}
-.half.L .thumbs{grid-template-columns:repeat(6,58px)}
-.half.L .thumbs .key:nth-child(1){grid-column:4}
-.half.R .thumbs .key:nth-child(1){grid-column:1}
+.arrows{display:grid; grid-template-columns:repeat(6,58px); gap:7px; margin-top:7px}
 
 .key{
   position:relative; height:52px; border-radius:6px;
@@ -269,22 +266,26 @@ const L0=[
  ["ESC","&kp ESC","f"],["Q","&kp Q","a"],["W","&kp W","a"],["E","&kp E","a"],["R","&kp R","a"],["T","&kp T","a"],["Y","&kp Y","a"],["U","&kp U","a"],["I","&kp I","a"],["O","&kp O","a"],["P","&kp P","a"],["BSPC","&kp BSPC","f"],
  ["CTRL","&kp LCTRL","m"],["A","&kp A","a"],["S","&kp S","a"],["D","&kp D","a"],["F","&kp F","a"],["G","&kp G","a"],["H","&kp H","a"],["J","&kp J","a"],["K","&kp K","a"],["L","&kp L","a"],[";","&kp SEMI","a"],["'","&kp SQT","a"],
  ["SHIFT","&kp LSHFT","m"],["Z","&kp Z","a"],["X","&kp X","a"],["C","&kp C","a"],["V","&kp V","a"],["B","&kp B","a"],["N","&kp N","a"],["M","&kp M","a"],[",","&kp COMMA","a"],[".","&kp DOT","a"],["/","&kp FSLH","a"],["ENTER","&kp RET","f"],
- ["CMD","&kp LGUI","m"],["SPACE","&kp SPACE","f"],["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
+ ["CMD","&kp LGUI","m"],["SPACE","&kp SPACE","f"],["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"],
+ ["\u2191","&kp UP","n"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2192","&kp RIGHT","n"],["\u2191","&kp UP","n"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2192","&kp RIGHT","n"]];
 const L1=[
  ["TAB","&kp TAB","f"],["1","&kp N1","d"],["2","&kp N2","d"],["3","&kp N3","d"],["4","&kp N4","d"],["5","&kp N5","d"],["6","&kp N6","d"],["7","&kp N7","d"],["8","&kp N8","d"],["9","&kp N9","d"],["0","&kp N0","d"],["BSPC","&kp BSPC","f"],
  ["BT CLR","&bt BT_CLR","b"],["BT 0","&bt BT_SEL 0","b"],["BT 1","&bt BT_SEL 1","b"],["BT 2","&bt BT_SEL 2","b"],["BT 3","&bt BT_SEL 3","b"],["BT 4","&bt BT_SEL 4","b"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2191","&kp UP","n"],["\u2192","&kp RIGHT","n"],T,T,
  ["SHIFT","&kp LSHFT","m"],["PREV","&kp C_PREV","v"],["PLAY","&kp C_PLAY_PAUSE","v"],["NEXT","&kp C_NEXT","v"],["VOL-","&kp C_VOL_DN","v"],["VOL+","&kp C_VOL_UP","v"],T,T,T,T,T,T,
- ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CMD","&kp LGUI","m"],["ALT","&kp RALT","m"]];
+ ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CMD","&kp LGUI","m"],["ALT","&kp RALT","m"],
+ T,T,T,T,T,T,T,T];
 const L2=[
  ["TAB","&kp TAB","f"],["!","&kp EXCL","s"],["@","&kp AT","s"],["#","&kp HASH","s"],["$","&kp DLLR","s"],["%","&kp PRCNT","s"],["\u2014","&none","x"],["(","&kp LPAR","s"],[")","&kp RPAR","s"],["\u2014","&none","x"],["\u2014","&none","x"],["DEL","&kp DEL","f"],
  ["CTRL","&kp LCTRL","m"],["^","&kp CARET","s"],["&","&kp AMPS","s"],["*","&kp ASTRK","s"],["+","&kp PLUS","s"],["=","&kp EQUAL","s"],["\u2014","&none","x"],["[","&kp LBKT","s"],["]","&kp RBKT","s"],["\u2014","&none","x"],["\\","&kp BSLH","s"],["`","&kp GRAVE","s"],
  ["SHIFT","&kp LSHFT","m"],T,T,T,["-","&kp MINUS","s"],["_","&kp UNDER","s"],["\u2014","&none","x"],["{","&kp LBRC","s"],["}","&kp RBRC","s"],["\u2014","&none","x"],["|","&kp PIPE","s"],["~","&kp TILDE","s"],
- ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
+ ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"],
+ T,T,T,T,T,T,T,T];
 const L3=[
  ["F1","&kp F1","f"],["F2","&kp F2","f"],["F3","&kp F3","f"],["F4","&kp F4","f"],["F5","&kp F5","f"],["F6","&kp F6","f"],["^","&kp CARET","s"],["7","&kp N7","d"],["8","&kp N8","d"],["9","&kp N9","d"],T,T,
  ["F7","&kp F7","f"],["F8","&kp F8","f"],["F9","&kp F9","f"],["F10","&kp F10","f"],["F11","&kp F11","f"],["F12","&kp F12","f"],["-","&kp MINUS","s"],["4","&kp N4","d"],["5","&kp N5","d"],["6","&kp N6","d"],T,T,
  T,T,T,T,T,T,["+","&kp PLUS","s"],["1","&kp N1","d"],["2","&kp N2","d"],["3","&kp N3","d"],T,T,
- ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"]];
+ ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"],
+ T,T,T,T,T,T,T,T];
 
 const LAYERS=[
  {keys:L0,name:"Base",tag:"layer 0 · default",chain:[]},
@@ -297,7 +298,9 @@ const FING_L=["outer","pinky","ring","middle","index","inner"];
 const FING_R=["inner","index","middle","ring","pinky","outer"];
 const ROWS=["top","home","bottom"];
 const THUMB_L=["outer","middle","inner"], THUMB_R=["inner","middle","outer"];
+const ARROW=["up","left","down","right"];
 function keyName(ki){
+  if(ki>=42){ const n=ki-42; return (n<4?"left":"right")+" arrow "+ARROW[n%4]; }
   if(ki>=36){ const n=ki-36; return n<3 ? "left "+THUMB_L[n]+" thumb" : "right "+THUMB_R[n-3]+" thumb"; }
   const r=Math.floor(ki/12), c=ki%12;
   return c<6 ? "left "+ROWS[r]+" "+FING_L[c] : "right "+ROWS[r]+" "+FING_R[c-6];
@@ -350,9 +353,15 @@ function render(li){
       }
       half.appendChild(row);
     }
+    // thumb row also carries the arrow cluster's UP, outboard of the thumbs
     const th=document.createElement("div"); th.className="thumbs";
-    for(let c=0;c<3;c++) th.appendChild(makeKey(li,36+(side?3+c:c)));
+    const put=(host,ki,gc)=>{const e=makeKey(li,ki); e.style.gridColumn=gc; host.appendChild(e);};
+    if(side){ for(let c=0;c<3;c++) put(th,39+c,1+c); put(th,46,5); }
+    else    { put(th,42,2); for(let c=0;c<3;c++) put(th,36+c,4+c); }
     half.appendChild(th);
+    const ar=document.createElement("div"); ar.className="arrows";
+    for(let c=0;c<3;c++) put(ar,(side?47:43)+c,(side?4:1)+c);
+    half.appendChild(ar);
     host.appendChild(half);
   });
 }
@@ -437,7 +446,7 @@ btn.onclick=()=>{
 };
 function match(ev){
   const keys=LAYERS[cur].keys, out=[];
-  for(let i=0;i<42;i++){
+  for(let i=0;i<50;i++){
     const [lbl,,kind]=keys[i];
     if(kind==="t") continue;
     if(CODE[i]===ev.code){out.push(i); continue;}

@@ -74,15 +74,15 @@ def read_layer(src, name):
         raise SystemExit(f"sync-keymap-html: layer {name!r} not found")
     toks = [re.sub(r"\s+", " ", t.strip())
             for t in re.findall(r"&\w+(?:\s+[A-Z0-9_]+)*", m.group(1))]
-    if len(toks) != 42:
-        raise SystemExit(f"sync-keymap-html: layer {name!r} has {len(toks)} bindings, expected 42")
+    if len(toks) != 50:
+        raise SystemExit(f"sync-keymap-html: layer {name!r} has {len(toks)} bindings, expected 50")
     return toks
 
 
 def render(toks):
     rows = []
-    for r in range(4):
-        span = toks[36:42] if r == 3 else toks[r * 12:(r + 1) * 12]
+    for r in range(5):
+        span = {3: toks[36:42], 4: toks[42:50]}.get(r) or toks[r * 12:(r + 1) * 12]
         cells = []
         for b in span:
             d = describe(b)
