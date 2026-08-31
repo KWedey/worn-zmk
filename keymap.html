@@ -9,7 +9,6 @@
   --ink:#18202B; --ink-2:#525E70; --muted:#8B95A4; --line:#C9D0DA;
   --accent:#A05C1D; --accent-ink:#7C4512; --accent-soft:#F0E1CF;
   --nav:#2C6796; --nav-soft:#D9E6F2;
-  --bt:#63499A; --bt-soft:#E4DCF2;
   --ghost:#A6B0BE;
 }
 @media (prefers-color-scheme:dark){
@@ -19,7 +18,6 @@
     --ink:#E9EDF3; --ink-2:#AEB9C7; --muted:#727E8D; --line:#2F3843;
     --accent:#E0A163; --accent-ink:#F0C193; --accent-soft:#3B2C1B;
     --nav:#79ADDC; --nav-soft:#1E2C3A;
-    --bt:#AE94DE; --bt-soft:#282039;
     --ghost:#5A6675;
   }
 }
@@ -29,7 +27,6 @@
   --ink:#E9EDF3; --ink-2:#AEB9C7; --muted:#727E8D; --line:#2F3843;
   --accent:#E0A163; --accent-ink:#F0C193; --accent-soft:#3B2C1B;
   --nav:#79ADDC; --nav-soft:#1E2C3A;
-  --bt:#AE94DE; --bt-soft:#282039;
   --ghost:#5A6675;
 }
 *{box-sizing:border-box}
@@ -105,13 +102,12 @@ h1{
   overflow:hidden;
 }
 .key .lbl{text-align:center; line-height:1.15; word-break:break-word}
-.key[data-k="m"] .lbl,.key[data-k="f"] .lbl,.key[data-k="l"] .lbl,.key[data-k="r"] .lbl,.key[data-k="b"] .lbl{font-size:9.5px; letter-spacing:.03em; text-transform:uppercase; font-weight:700}
+.key[data-k="m"] .lbl,.key[data-k="f"] .lbl,.key[data-k="l"] .lbl,.key[data-k="r"] .lbl{font-size:9.5px; letter-spacing:.03em; text-transform:uppercase; font-weight:700}
 .key[data-k="m"]{color:var(--ink-2)}
 .key[data-k="f"]{color:var(--ink-2)}
 .key[data-k="s"]{color:var(--accent-ink)}
 .key[data-k="d"]{color:var(--accent-ink)}
 .key[data-k="n"]{background:linear-gradient(178deg,var(--nav-soft),var(--nav-soft)); color:var(--nav); font-size:17px}
-.key[data-k="b"]{background:linear-gradient(178deg,var(--bt-soft),var(--bt-soft)); color:var(--bt)}
 .key[data-k="l"]{
   background:linear-gradient(178deg,var(--accent-soft),var(--accent-soft));
   color:var(--accent-ink); border-color:var(--accent);
@@ -166,7 +162,6 @@ h1{
 .sw{width:26px; height:19px; border-radius:4px; border:1px solid var(--cap-edge); flex:none;
     background:linear-gradient(178deg,var(--cap),var(--cap-2))}
 .sw.n{background:var(--nav-soft); border-color:var(--nav)}
-.sw.b{background:var(--bt-soft); border-color:var(--bt)}
 .sw.l{background:var(--accent-soft); border-color:var(--accent)}
 .sw.t{background:var(--panel); border-style:dashed; border-color:var(--line)}
 .sw.x{background:var(--panel); border-color:var(--cap-edge)}
@@ -202,9 +197,9 @@ code{font-family:"JetBrains Mono",monospace; font-size:12px; background:var(--de
 <div class="wrap">
   <header>
     <div class="brand">
-      <span class="eyebrow">Corne 6-col · split · 42 keys</span>
+      <span class="eyebrow">6-col · split · 50 keys</span>
       <h1>Worn</h1>
-      <p class="sub">Four layers on a 42-key split. Two thumb keys open layers; holding both opens a third. Dashed keys pass through to whatever is underneath.</p>
+      <p class="sub">Four layers on a 50-key split. Two thumb keys open layers; holding both opens a third. Dashed keys pass through to whatever is underneath.</p>
     </div>
     <dl class="spec">
       <dt>Shield</dt><dd>worn_left / worn_right</dd>
@@ -254,7 +249,6 @@ code{font-family:"JetBrains Mono",monospace; font-size:12px; background:var(--de
         <li><span class="sw x"></span><b>Blank</b> — set to do nothing on purpose</li>
         <li><span class="sw l"></span><b>Copper</b> — layer key, held not tapped</li>
         <li><span class="sw n"></span><b>Blue</b> — arrows</li>
-        <li><span class="sw b"></span><b>Violet</b> — Bluetooth profile</li>
       </ul>
     </div>
   </div>
@@ -270,14 +264,14 @@ const L0=[
  ["\u2191","&kp UP","n"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2192","&kp RIGHT","n"],["\u2191","&kp UP","n"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2192","&kp RIGHT","n"]];
 const L1=[
  ["TAB","&kp TAB","f"],["1","&kp N1","d"],["2","&kp N2","d"],["3","&kp N3","d"],["4","&kp N4","d"],["5","&kp N5","d"],["6","&kp N6","d"],["7","&kp N7","d"],["8","&kp N8","d"],["9","&kp N9","d"],["0","&kp N0","d"],["BSPC","&kp BSPC","f"],
- ["BT CLR","&bt BT_CLR","b"],["BT 0","&bt BT_SEL 0","b"],["BT 1","&bt BT_SEL 1","b"],["BT 2","&bt BT_SEL 2","b"],["BT 3","&bt BT_SEL 3","b"],["BT 4","&bt BT_SEL 4","b"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2191","&kp UP","n"],["\u2192","&kp RIGHT","n"],T,T,
- ["SHIFT","&kp LSHFT","m"],["PREV","&kp C_PREV","v"],["PLAY","&kp C_PLAY_PAUSE","v"],["NEXT","&kp C_NEXT","v"],["VOL-","&kp C_VOL_DN","v"],["VOL+","&kp C_VOL_UP","v"],T,T,T,T,T,T,
+ ["MUTE","&kp C_MUTE","v"],["PREV","&kp C_PREV","v"],["PLAY","&kp C_PLAY_PAUSE","v"],["NEXT","&kp C_NEXT","v"],["VOL-","&kp C_VOL_DN","v"],["VOL+","&kp C_VOL_UP","v"],["\u2190","&kp LEFT","n"],["\u2193","&kp DOWN","n"],["\u2191","&kp UP","n"],["\u2192","&kp RIGHT","n"],T,T,
+ ["SHIFT","&kp LSHFT","m"],["\u2014","&none","x"],["\u2014","&none","x"],["\u2014","&none","x"],["\u2014","&none","x"],["\u2014","&none","x"],T,T,T,T,T,T,
  ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CMD","&kp LGUI","m"],["ALT","&kp RALT","m"],
  T,T,T,T,T,T,T,T];
 const L2=[
- ["TAB","&kp TAB","f"],["!","&kp EXCL","s"],["@","&kp AT","s"],["#","&kp HASH","s"],["$","&kp DLLR","s"],["%","&kp PRCNT","s"],["\u2014","&none","x"],["(","&kp LPAR","s"],[")","&kp RPAR","s"],["\u2014","&none","x"],["\u2014","&none","x"],["DEL","&kp DEL","f"],
- ["CTRL","&kp LCTRL","m"],["^","&kp CARET","s"],["&","&kp AMPS","s"],["*","&kp ASTRK","s"],["+","&kp PLUS","s"],["=","&kp EQUAL","s"],["\u2014","&none","x"],["[","&kp LBKT","s"],["]","&kp RBKT","s"],["\u2014","&none","x"],["\\","&kp BSLH","s"],["`","&kp GRAVE","s"],
- ["SHIFT","&kp LSHFT","m"],T,T,T,["-","&kp MINUS","s"],["_","&kp UNDER","s"],["\u2014","&none","x"],["{","&kp LBRC","s"],["}","&kp RBRC","s"],["\u2014","&none","x"],["|","&kp PIPE","s"],["~","&kp TILDE","s"],
+ ["TAB","&kp TAB","f"],["!","&kp EXCL","s"],["@","&kp AT","s"],["#","&kp HASH","s"],["$","&kp DLLR","s"],["%","&kp PRCNT","s"],["^","&kp CARET","s"],["&","&kp AMPS","s"],["(","&kp LPAR","s"],[")","&kp RPAR","s"],["*","&kp ASTRK","s"],["DEL","&kp DEL","f"],
+ ["CTRL","&kp LCTRL","m"],["\u2014","&none","x"],["\u2014","&none","x"],["\u2014","&none","x"],["\u2014","&none","x"],["\u2014","&none","x"],["-","&kp MINUS","s"],["+","&kp PLUS","s"],["[","&kp LBKT","s"],["]","&kp RBKT","s"],["\\","&kp BSLH","s"],["`","&kp GRAVE","s"],
+ ["SHIFT","&kp LSHFT","m"],T,T,T,["\u2014","&none","x"],["\u2014","&none","x"],["_","&kp UNDER","s"],["=","&kp EQUAL","s"],["{","&kp LBRC","s"],["}","&kp RBRC","s"],["|","&kp PIPE","s"],["~","&kp TILDE","s"],
  ["CMD","&kp LGUI","m"],T,["LOWER","&mo 1","l"],["RAISE","&mo 2","l"],["CTRL","&kp LCTRL","m"],["ALT","&kp RALT","m"],
  T,T,T,T,T,T,T,T];
 const L3=[

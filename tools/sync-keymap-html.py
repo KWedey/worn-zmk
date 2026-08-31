@@ -60,16 +60,11 @@ def describe(binding):
     if binding.startswith("&mo "):
         n = binding[4:]
         return LAYER_NAMES.get(n, "L" + n), "l"
-    if binding == "&bt BT_CLR":
-        return "BT CLR", "b"
-    m = re.fullmatch(r"&bt BT_SEL (\d)", binding)
-    if m:
-        return "BT " + m.group(1), "b"
     raise SystemExit(f"sync-keymap-html: no label for {binding!r} -- add it to SPECIAL")
 
 
 def read_layer(src, name):
-    m = re.search(re.escape(name) + r"\s*\{.*?bindings = <(.*?)>;", src, re.S)
+    m = re.search(r"(?m)^\s*" + re.escape(name) + r"\s*\{.*?bindings = <(.*?)>;", src, re.S)
     if not m:
         raise SystemExit(f"sync-keymap-html: layer {name!r} not found")
     toks = [re.sub(r"\s+", " ", t.strip())
