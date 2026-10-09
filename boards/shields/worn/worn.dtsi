@@ -4,6 +4,14 @@
     chosen {
         zephyr;
         zmk,kscan = &kscan0;
+        zmk,physical-layout = &worn_layout;
+    };
+
+    worn_layout: worn_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Worn 50-key";
+        transform = <&default_transform>;
+        kscan = <&kscan0>;
     };
 
     default_transform: keymap_transform_0 {
